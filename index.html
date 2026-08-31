@@ -7,184 +7,88 @@
 
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f6f8fb;
-  color:#1e293b;
-}
-header{
-  background:#111827;
-  color:white;
-  padding:18px 5%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.logo{
-  font-size:24px;
-  font-weight:bold;
-}
-.logo span{color:#22c55e}
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:30px 20px;
-}
-.hero{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:30px;
-}
-h1{margin:0;font-size:30px}
-.subtitle{color:#64748b;margin-top:8px}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
-}
-.card{
-  background:white;
-  padding:22px;
-  border-radius:14px;
-  box-shadow:0 4px 15px rgba(0,0,0,.06);
-}
-.number{
-  font-size:32px;
-  font-weight:bold;
-  color:#2563eb;
-}
-.label{color:#64748b;margin-top:6px}
-.score{
-  font-size:52px;
-  font-weight:bold;
-  color:#f59e0b;
-}
-.section{
-  background:white;
-  margin-top:25px;
-  padding:25px;
-  border-radius:14px;
-  box-shadow:0 4px 15px rgba(0,0,0,.06);
-}
-.problem{
-  padding:14px;
-  margin:10px 0;
-  border-left:4px solid #ef4444;
-  background:#fff7f7;
-}
-.good{
-  border-left-color:#22c55e;
-  background:#f0fdf4;
-}
-button{
-  background:#2563eb;
-  color:white;
-  border:none;
-  padding:13px 20px;
-  border-radius:8px;
-  cursor:pointer;
-  font-size:15px;
-  font-weight:bold;
-}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#1e293b}
+header{background:#111827;color:#fff;padding:18px 6%;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:bold}.logo span{color:#22c55e}
+.container{max-width:1100px;margin:auto;padding:30px 20px}
+.card,.section{background:#fff;border-radius:14px;padding:22px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,.06)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
+.number{font-size:30px;font-weight:bold;color:#2563eb}
+.label{color:#64748b;margin-top:5px}
+input,textarea,select{width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;margin:7px 0 15px;font-size:15px}
+textarea{min-height:110px}
+button{background:#2563eb;color:#fff;border:0;padding:12px 18px;border-radius:8px;font-weight:bold;cursor:pointer;margin:5px}
 button:hover{background:#1d4ed8}
-.green{background:#16a34a}
-.green:hover{background:#15803d}
-textarea{
-  width:100%;
-  min-height:130px;
-  padding:15px;
-  border:1px solid #ddd;
-  border-radius:8px;
-  font-size:15px;
-}
-.nav button{
-  background:transparent;
-  margin-left:10px;
-}
+.green{background:#16a34a}.green:hover{background:#15803d}
+.orange{color:#f59e0b;font-size:48px;font-weight:bold}
+.hidden{display:none}
+.result{background:#f8fafc;padding:18px;border-radius:10px;margin-top:15px}
+.service{padding:10px;border-bottom:1px solid #eee}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">LocalBoost <span>AI</span></div>
-  <div>AI Agent for Local Business Growth</div>
+<div class="logo">LocalBoost <span>AI</span></div>
+<div>AI Agent for Local Business Growth</div>
 </header>
 
 <div class="container">
 
-<div class="hero">
-<div>
-<h1>Welcome, DK Technologies 👋</h1>
-<div class="subtitle">Google Business Profile Growth Dashboard</div>
+<div class="card">
+<h2>🚀 LocalBoost AI Dashboard</h2>
+<button class="green" onclick="showClientForm()">➕ Add Client</button>
+<button onclick="loadDK()">💻 Load DK Technologies</button>
 </div>
+
+<div id="clientForm" class="section hidden">
+<h2>➕ Add Business Client</h2>
+
+<label>Business Name</label>
+<input id="businessName" placeholder="e.g. DK Technologies">
+
+<label>Business Category</label>
+<input id="category" placeholder="e.g. Laptop Repair Service">
+
+<label>Location</label>
+<input id="location" placeholder="e.g. Garia, Kolkata">
+
+<label>Current Business Description</label>
+<textarea id="description" placeholder="Paste current Google Business Profile description"></textarea>
+
+<label>Current Services</label>
+<textarea id="services" placeholder="One service per line"></textarea>
+
 <button class="green" onclick="runAudit()">⚡ Run AI Audit</button>
 </div>
 
+<div id="dashboard" class="hidden">
+
+<div class="section">
+<h1 id="title">Business Dashboard</h1>
+<p id="subtitle"></p>
+</div>
+
 <div class="grid">
-<div class="card">
-<div class="number">142</div>
-<div class="label">Google Calls (6 Months)</div>
-</div>
-
-<div class="card">
-<div class="number">560</div>
-<div class="label">Business Interactions</div>
-</div>
-
-<div class="card">
-<div class="number">4.4 ⭐</div>
-<div class="label">Google Rating</div>
-</div>
-
-<div class="card">
-<div class="number">124</div>
-<div class="label">Google Reviews</div>
-</div>
+<div class="card"><div class="number" id="score">--</div><div class="label">AI Optimization Score</div></div>
+<div class="card"><div class="number" id="problems">--</div><div class="label">Problems Found</div></div>
+<div class="card"><div class="number" id="opportunities">--</div><div class="label">Growth Opportunities</div></div>
 </div>
 
 <div class="section">
-<h2>🤖 AI Optimization Score</h2>
-<div class="score" id="score">62/100</div>
-<p>Your profile has strong foundations but needs optimization for higher Google Maps visibility and calls.</p>
+<h2>🔍 AI Audit Results</h2>
+<div id="auditResults"></div>
 </div>
 
 <div class="section">
-<h2>🔍 Problems Found</h2>
-
-<div class="problem">
-<strong>High Priority:</strong> Services are too broad and dilute laptop repair relevance.
+<h2>🤖 AI Growth Tools</h2>
+<button onclick="generateDescription()">📝 Optimize Description</button>
+<button onclick="generateServices()">🛠 Generate Services</button>
+<button onclick="generatePosts()">📅 Generate Google Posts</button>
 </div>
 
-<div class="problem">
-<strong>High Priority:</strong> Missing high-intent service keywords.
-</div>
-
-<div class="problem">
-<strong>Medium Priority:</strong> Business profile needs consistent Google Posts.
-</div>
-
-<div class="problem good">
-<strong>Strength:</strong> 124 Google reviews provide strong trust signals.
-</div>
-
-</div>
-
-<div class="section">
-<h2>🚀 AI Recommended Actions</h2>
-
-<p>✓ Focus profile on Laptop & Computer Repair</p>
-<p>✓ Add motherboard repair service</p>
-<p>✓ Add screen replacement service</p>
-<p>✓ Add charging problem repair</p>
-<p>✓ Add brand-specific laptop services</p>
-<p>✓ Publish weekly Google Posts</p>
-
-<button onclick="generateDescription()">Generate AI Optimized Description</button>
-
-<div id="result" style="margin-top:20px"></div>
+<div id="output" class="section hidden"></div>
 
 </div>
 
@@ -192,24 +96,142 @@ textarea{
 
 <script>
 
+let client = {};
+
+function showClientForm(){
+ document.getElementById("clientForm").classList.remove("hidden");
+}
+
+function loadDK(){
+ document.getElementById("clientForm").classList.remove("hidden");
+ document.getElementById("businessName").value="DK Technologies";
+ document.getElementById("category").value="Laptop & Computer Repair Service";
+ document.getElementById("location").value="Garia, Kolkata";
+ document.getElementById("description").value="Computer and laptop repair service centre.";
+ document.getElementById("services").value=
+`Computer repair
+Laptop repair
+Mac repair
+Network setup
+Printer repair
+Phone repair
+Software
+Web design`;
+}
+
 function runAudit(){
-document.getElementById("score").innerHTML="68/100";
-alert("AI Audit Complete! 12 optimization opportunities found.");
+
+ const name=document.getElementById("businessName").value || "Your Business";
+ const category=document.getElementById("category").value;
+ const location=document.getElementById("location").value;
+ const description=document.getElementById("description").value;
+ const services=document.getElementById("services").value;
+
+ client={name,category,location,description,services};
+
+ localStorage.setItem("localboostClient",JSON.stringify(client));
+
+ let score=55;
+ let issues=[];
+
+ if(description.length>100) score+=8;
+ else issues.push("Business description is too short.");
+
+ if(location) score+=7;
+ else issues.push("Location keyword is missing.");
+
+ if(services.toLowerCase().includes("motherboard")) score+=5;
+ else issues.push("Missing high-intent motherboard repair service.");
+
+ if(services.toLowerCase().includes("screen")) score+=5;
+ else issues.push("Missing laptop screen replacement service.");
+
+ if(services.toLowerCase().includes("charging")) score+=5;
+ else issues.push("Missing charging problem repair service.");
+
+ if(issues.length===0) issues.push("Profile structure looks strong. Focus on reviews and regular Google Posts.");
+
+ document.getElementById("clientForm").classList.add("hidden");
+ document.getElementById("dashboard").classList.remove("hidden");
+
+ document.getElementById("title").innerHTML="Welcome, "+name+" 👋";
+ document.getElementById("subtitle").innerHTML=category+" • "+location;
+ document.getElementById("score").innerHTML=score+"/100";
+ document.getElementById("problems").innerHTML=issues.length;
+ document.getElementById("opportunities").innerHTML="12";
+
+ let html="";
+ issues.forEach(i=>html+=`<div class="result">⚠️ ${i}</div>`);
+ document.getElementById("auditResults").innerHTML=html;
+}
+
+function showOutput(title,content){
+ const output=document.getElementById("output");
+ output.classList.remove("hidden");
+ output.innerHTML=`<h2>${title}</h2><div class="result">${content}</div>
+ <button class="green" onclick="copyOutput()">📋 Copy Result</button>`;
+}
+
+function copyOutput(){
+ const text=document.getElementById("output").innerText;
+ navigator.clipboard.writeText(text);
+ alert("Copied!");
 }
 
 function generateDescription(){
+ const name=client.name || "Your Business";
+ const location=client.location || "your location";
 
-document.getElementById("result").innerHTML=`
-<h3>AI Optimized Business Description</h3>
+ showOutput("📝 Optimized Business Description",
+ `<strong>${name}</strong> is a trusted laptop and computer repair service in ${location}. We provide professional laptop motherboard repair, screen replacement, keyboard repair, charging issue repair, battery replacement, overheating solutions and computer servicing. Our technicians support HP, Dell, Lenovo, Asus, Acer and other major brands. Get reliable diagnosis, quality repairs and quick service.`);
+}
 
-<textarea>DK Technologies is a trusted laptop and computer repair service centre in Garia, Kolkata. We provide professional laptop motherboard repair, screen replacement, keyboard repair, charging issue repair, battery replacement, overheating solutions and computer servicing. Expert repair support is available for HP, Dell, Lenovo, Asus, Acer and other major laptop brands. Visit us for reliable diagnosis, quality repairs and quick service.</textarea>
+function generateServices(){
 
-<br><br>
+ const services=[
+ "Laptop Repair Service",
+ "Laptop Motherboard Repair",
+ "Laptop Screen Replacement",
+ "Laptop Keyboard Replacement",
+ "Laptop Hinge Repair",
+ "Laptop Charging Problem Repair",
+ "Laptop Battery Replacement",
+ "Laptop Water Damage Repair",
+ "Laptop Overheating Repair",
+ "Laptop Data Recovery",
+ "HP Laptop Repair",
+ "Dell Laptop Repair",
+ "Lenovo Laptop Repair",
+ "Asus Laptop Repair",
+ "Acer Laptop Repair"
+ ];
 
-<button class="green" onclick="alert('Saved to Optimization Queue!')">
-✓ Add to Optimization Queue
-</button>
-`;
+ let html="<p><strong>Recommended high-intent services:</strong></p>";
+ services.forEach(s=>html+=`<div class="service">✓ ${s}</div>`);
+
+ showOutput("🛠 AI Recommended Services",html);
+}
+
+function generatePosts(){
+
+ const posts=[
+ "🔧 Laptop running slow? Get professional diagnosis and repair today. Visit us for reliable laptop servicing.",
+ "💻 Laptop screen broken? We provide professional laptop screen replacement for major brands.",
+ "⚡ Laptop not charging? Our technicians can diagnose charging port, adapter and motherboard issues.",
+ "🔥 Laptop overheating? Get cleaning, thermal servicing and cooling issue repair from experts."
+ ];
+
+ let html="";
+ posts.forEach((p,i)=>html+=`<div class="result"><strong>Google Post ${i+1}</strong><br><br>${p}</div>`);
+
+ showOutput("📅 AI Generated Google Posts",html);
+}
+
+window.onload=function(){
+ const saved=localStorage.getItem("localboostClient");
+ if(saved){
+   client=JSON.parse(saved);
+ }
 }
 
 </script>

@@ -7,232 +7,1007 @@
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#1e293b}
-header{background:#111827;color:#fff;padding:18px 6%;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:24px;font-weight:bold}.logo span{color:#22c55e}
-.container{max-width:1100px;margin:auto;padding:30px 20px}
-.card,.section{background:#fff;border-radius:14px;padding:22px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,.06)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
-.number{font-size:30px;font-weight:bold;color:#2563eb}
-.label{color:#64748b;margin-top:5px}
-input,textarea,select{width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;margin:7px 0 15px;font-size:15px}
-textarea{min-height:110px}
-button{background:#2563eb;color:#fff;border:0;padding:12px 18px;border-radius:8px;font-weight:bold;cursor:pointer;margin:5px}
-button:hover{background:#1d4ed8}
-.green{background:#16a34a}.green:hover{background:#15803d}
-.orange{color:#f59e0b;font-size:48px;font-weight:bold}
-.hidden{display:none}
-.result{background:#f8fafc;padding:18px;border-radius:10px;margin-top:15px}
-.service{padding:10px;border-bottom:1px solid #eee}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f7fb;
+  color:#1e293b
+}
+
+header{
+  background:#111827;
+  color:#fff;
+  padding:18px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+
+.logo{
+  font-size:24px;
+  font-weight:bold
+}
+
+.logo span{color:#22c55e}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:30px 20px
+}
+
+.card,.section{
+  background:#fff;
+  border-radius:14px;
+  padding:22px;
+  margin-bottom:20px;
+  box-shadow:0 4px 15px rgba(0,0,0,.06)
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:15px
+}
+
+.number{
+  font-size:30px;
+  font-weight:bold;
+  color:#2563eb
+}
+
+.label{
+  color:#64748b;
+  margin-top:5px
+}
+
+input,textarea{
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  margin:7px 0 15px;
+  font-size:15px
+}
+
+textarea{
+  min-height:110px
+}
+
+button{
+  background:#2563eb;
+  color:#fff;
+  border:0;
+  padding:12px 18px;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+  margin:5px
+}
+
+button:hover{
+  background:#1d4ed8
+}
+
+.green{
+  background:#16a34a
+}
+
+.green:hover{
+  background:#15803d
+}
+
+.hidden{
+  display:none
+}
+
+.result{
+  background:#f8fafc;
+  padding:18px;
+  border-radius:10px;
+  margin-top:15px;
+  border:1px solid #e5e7eb
+}
+
+.service{
+  padding:10px;
+  border-bottom:1px solid #eee
+}
+
+.client-item{
+  padding:15px;
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  margin:10px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+
+.status{
+  font-size:14px;
+  color:#16a34a;
+  margin-top:10px
+}
+
+@media(max-width:600px){
+  header{
+    flex-direction:column;
+    gap:8px
+  }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">LocalBoost <span>AI</span></div>
-<div>AI Agent for Local Business Growth</div>
+  <div class="logo">LocalBoost <span>AI</span></div>
+  <div>AI Agent for Local Business Growth</div>
 </header>
 
 <div class="container">
 
-<div class="card">
-<h2>🚀 LocalBoost AI Dashboard</h2>
-<button class="green" onclick="showClientForm()">➕ Add Client</button>
-<button onclick="loadDK()">💻 Load DK Technologies</button>
+  <div class="card">
+    <h2>🚀 LocalBoost AI Dashboard</h2>
+
+    <button class="green" onclick="showClientForm()">
+      ➕ Add Client
+    </button>
+
+    <button onclick="loadDK()">
+      💻 Load DK Technologies
+    </button>
+
+    <button onclick="showClients()">
+      👥 View All Clients
+    </button>
+  </div>
+
+
+  <!-- ADD CLIENT FORM -->
+
+  <div id="clientForm" class="section hidden">
+
+    <h2>➕ Add Business Client</h2>
+
+    <label>Business Name</label>
+    <input id="businessName" placeholder="e.g. DK Technologies">
+
+    <label>Business Category</label>
+    <input id="category" placeholder="e.g. Laptop Repair Service">
+
+    <label>Location</label>
+    <input id="location" placeholder="e.g. Garia, Kolkata">
+
+    <label>Current Business Description</label>
+    <textarea id="description"
+    placeholder="Paste current Google Business Profile description"></textarea>
+
+    <label>Current Services</label>
+    <textarea id="services"
+    placeholder="One service per line"></textarea>
+
+    <button class="green" onclick="runAudit()">
+      ⚡ Run AI Audit
+    </button>
+
+  </div>
+
+
+  <!-- DASHBOARD -->
+
+  <div id="dashboard" class="hidden">
+
+    <div class="section">
+      <h1 id="title">Business Dashboard</h1>
+      <p id="subtitle"></p>
+    </div>
+
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="number" id="score">--</div>
+        <div class="label">AI Optimization Score</div>
+      </div>
+
+      <div class="card">
+        <div class="number" id="problems">--</div>
+        <div class="label">Problems Found</div>
+      </div>
+
+      <div class="card">
+        <div class="number" id="opportunities">--</div>
+        <div class="label">Growth Opportunities</div>
+      </div>
+
+    </div>
+
+
+    <div class="section">
+      <h2>🔍 AI Audit Results</h2>
+      <div id="auditResults"></div>
+    </div>
+
+
+    <div class="section">
+
+      <h2>🤖 AI Growth Tools</h2>
+
+      <button onclick="generateDescription()">
+        📝 Optimize Description
+      </button>
+
+      <button onclick="generateServices()">
+        🛠 Generate Services
+      </button>
+
+      <button onclick="generatePosts()">
+        📅 Generate Google Posts
+      </button>
+
+    </div>
+
+
+    <div id="output" class="section hidden"></div>
+
+  </div>
+
+
+  <!-- CLIENT LIST -->
+
+  <div id="clientsSection" class="section hidden">
+
+    <h2>👥 Saved Clients</h2>
+
+    <button onclick="showClientForm()">
+      ➕ Add New Client
+    </button>
+
+    <div id="clientsList"></div>
+
+  </div>
+
 </div>
 
-<div id="clientForm" class="section hidden">
-<h2>➕ Add Business Client</h2>
-
-<label>Business Name</label>
-<input id="businessName" placeholder="e.g. DK Technologies">
-
-<label>Business Category</label>
-<input id="category" placeholder="e.g. Laptop Repair Service">
-
-<label>Location</label>
-<input id="location" placeholder="e.g. Garia, Kolkata">
-
-<label>Current Business Description</label>
-<textarea id="description" placeholder="Paste current Google Business Profile description"></textarea>
-
-<label>Current Services</label>
-<textarea id="services" placeholder="One service per line"></textarea>
-
-<button class="green" onclick="runAudit()">⚡ Run AI Audit</button>
-</div>
-
-<div id="dashboard" class="hidden">
-
-<div class="section">
-<h1 id="title">Business Dashboard</h1>
-<p id="subtitle"></p>
-</div>
-
-<div class="grid">
-<div class="card"><div class="number" id="score">--</div><div class="label">AI Optimization Score</div></div>
-<div class="card"><div class="number" id="problems">--</div><div class="label">Problems Found</div></div>
-<div class="card"><div class="number" id="opportunities">--</div><div class="label">Growth Opportunities</div></div>
-</div>
-
-<div class="section">
-<h2>🔍 AI Audit Results</h2>
-<div id="auditResults"></div>
-</div>
-
-<div class="section">
-<h2>🤖 AI Growth Tools</h2>
-<button onclick="generateDescription()">📝 Optimize Description</button>
-<button onclick="generateServices()">🛠 Generate Services</button>
-<button onclick="generatePosts()">📅 Generate Google Posts</button>
-</div>
-
-<div id="output" class="section hidden"></div>
-
-</div>
-
-</div>
 
 <script>
 
+/* =========================================
+   SUPABASE CONFIGURATION
+========================================= */
+
+const SUPABASE_URL =
+"https://dlnvjebqrtjmviedclli.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_jxENr4ZPBWgtEgEdxf7Svw_QgwEP3FZ";
+
+
+/* =========================================
+   GLOBAL CLIENT
+========================================= */
+
 let client = {};
 
+
+/* =========================================
+   SHOW CLIENT FORM
+========================================= */
+
 function showClientForm(){
- document.getElementById("clientForm").classList.remove("hidden");
+
+  document.getElementById("clientForm")
+    .classList.remove("hidden");
+
+  document.getElementById("dashboard")
+    .classList.add("hidden");
+
+  document.getElementById("clientsSection")
+    .classList.add("hidden");
+
 }
 
+
+/* =========================================
+   LOAD DK TECHNOLOGIES
+========================================= */
+
 function loadDK(){
- document.getElementById("clientForm").classList.remove("hidden");
- document.getElementById("businessName").value="DK Technologies";
- document.getElementById("category").value="Laptop & Computer Repair Service";
- document.getElementById("location").value="Garia, Kolkata";
- document.getElementById("description").value="Computer and laptop repair service centre.";
- document.getElementById("services").value=
-`Computer repair
-Laptop repair
+
+  showClientForm();
+
+  document.getElementById("businessName").value =
+    "DK Technologies";
+
+  document.getElementById("category").value =
+    "Laptop & Computer Repair Service";
+
+  document.getElementById("location").value =
+    "Garia, Kolkata";
+
+  document.getElementById("description").value =
+    "DK Technologies provides professional laptop and computer repair services.";
+
+  document.getElementById("services").value =
+`Laptop repair
+Computer repair
 Mac repair
 Network setup
 Printer repair
-Phone repair
-Software
-Web design`;
+Software installation`;
+
 }
 
-function runAudit(){
 
- const name=document.getElementById("businessName").value || "Your Business";
- const category=document.getElementById("category").value;
- const location=document.getElementById("location").value;
- const description=document.getElementById("description").value;
- const services=document.getElementById("services").value;
+/* =========================================
+   RUN AUDIT
+========================================= */
 
- client={name,category,location,description,services};
+async function runAudit(){
 
- localStorage.setItem("localboostClient",JSON.stringify(client));
+  const name =
+    document.getElementById("businessName").value ||
+    "Your Business";
 
- let score=55;
- let issues=[];
+  const category =
+    document.getElementById("category").value;
 
- if(description.length>100) score+=8;
- else issues.push("Business description is too short.");
+  const location =
+    document.getElementById("location").value;
 
- if(location) score+=7;
- else issues.push("Location keyword is missing.");
+  const description =
+    document.getElementById("description").value;
 
- if(services.toLowerCase().includes("motherboard")) score+=5;
- else issues.push("Missing high-intent motherboard repair service.");
+  const services =
+    document.getElementById("services").value;
 
- if(services.toLowerCase().includes("screen")) score+=5;
- else issues.push("Missing laptop screen replacement service.");
 
- if(services.toLowerCase().includes("charging")) score+=5;
- else issues.push("Missing charging problem repair service.");
+  client = {
+    name,
+    category,
+    location,
+    description,
+    services
+  };
 
- if(issues.length===0) issues.push("Profile structure looks strong. Focus on reviews and regular Google Posts.");
 
- document.getElementById("clientForm").classList.add("hidden");
- document.getElementById("dashboard").classList.remove("hidden");
+  /* SAVE LOCAL */
 
- document.getElementById("title").innerHTML="Welcome, "+name+" 👋";
- document.getElementById("subtitle").innerHTML=category+" • "+location;
- document.getElementById("score").innerHTML=score+"/100";
- document.getElementById("problems").innerHTML=issues.length;
- document.getElementById("opportunities").innerHTML="12";
+  localStorage.setItem(
+    "localboostClient",
+    JSON.stringify(client)
+  );
 
- let html="";
- issues.forEach(i=>html+=`<div class="result">⚠️ ${i}</div>`);
- document.getElementById("auditResults").innerHTML=html;
+
+  /* SAVE TO SUPABASE */
+
+  await saveClientToSupabase();
+
+
+  /* AUDIT */
+
+  let score = 55;
+
+  let issues = [];
+
+
+  if(description.length > 100){
+
+    score += 8;
+
+  } else {
+
+    issues.push(
+      "Business description is too short."
+    );
+
+  }
+
+
+  if(location){
+
+    score += 7;
+
+  } else {
+
+    issues.push(
+      "Location keyword is missing."
+    );
+
+  }
+
+
+  if(
+    services.toLowerCase()
+    .includes("motherboard")
+  ){
+
+    score += 5;
+
+  } else {
+
+    issues.push(
+      "Missing high-intent motherboard repair service."
+    );
+
+  }
+
+
+  if(
+    services.toLowerCase()
+    .includes("screen")
+  ){
+
+    score += 5;
+
+  } else {
+
+    issues.push(
+      "Missing laptop screen replacement service."
+    );
+
+  }
+
+
+  if(
+    services.toLowerCase()
+    .includes("charging")
+  ){
+
+    score += 5;
+
+  } else {
+
+    issues.push(
+      "Missing charging problem repair service."
+    );
+
+  }
+
+
+  if(issues.length === 0){
+
+    issues.push(
+      "Profile structure looks strong. Focus on reviews and regular Google Posts."
+    );
+
+  }
+
+
+  /* SHOW DASHBOARD */
+
+  document.getElementById("clientForm")
+    .classList.add("hidden");
+
+  document.getElementById("dashboard")
+    .classList.remove("hidden");
+
+
+  document.getElementById("title").innerHTML =
+    "Welcome, " + name + " 👋";
+
+
+  document.getElementById("subtitle").innerHTML =
+    category + " • " + location;
+
+
+  document.getElementById("score").innerHTML =
+    score + "/100";
+
+
+  document.getElementById("problems").innerHTML =
+    issues.length;
+
+
+  document.getElementById("opportunities").innerHTML =
+    "12";
+
+
+  let html = "";
+
+  issues.forEach(function(issue){
+
+    html +=
+    `<div class="result">
+      ⚠️ ${issue}
+    </div>`;
+
+  });
+
+
+  html +=
+  `<div class="status">
+    ✓ Client saved to database
+  </div>`;
+
+
+  document.getElementById("auditResults").innerHTML =
+    html;
+
 }
+
+
+/* =========================================
+   SAVE CLIENT TO SUPABASE
+========================================= */
+
+async function saveClientToSupabase(){
+
+  try{
+
+    const response = await fetch(
+
+      SUPABASE_URL + "/rest/v1/clients",
+
+      {
+
+        method: "POST",
+
+        headers: {
+
+          "Content-Type":
+            "application/json",
+
+          "apikey":
+            SUPABASE_KEY,
+
+          "Authorization":
+            "Bearer " + SUPABASE_KEY,
+
+          "Prefer":
+            "return=representation"
+
+        },
+
+        body: JSON.stringify({
+
+          name: client.name,
+
+          category: client.category,
+
+          location: client.location,
+
+          description: client.description,
+
+          services: client.services
+
+        })
+
+      }
+
+    );
+
+
+    if(!response.ok){
+
+      const error =
+        await response.text();
+
+      console.error(
+        "Supabase Error:",
+        error
+      );
+
+      alert(
+        "Database connection error. Check console."
+      );
+
+      return;
+
+    }
+
+
+    console.log(
+      "Client saved successfully!"
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Could not connect to database."
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   LOAD CLIENTS FROM SUPABASE
+========================================= */
+
+async function loadClientsFromSupabase(){
+
+  try{
+
+    const response = await fetch(
+
+      SUPABASE_URL +
+      "/rest/v1/clients?select=*&order=created_at.desc",
+
+      {
+
+        headers: {
+
+          "apikey":
+            SUPABASE_KEY,
+
+          "Authorization":
+            "Bearer " + SUPABASE_KEY
+
+        }
+
+      }
+
+    );
+
+
+    if(!response.ok){
+
+      console.error(
+        "Could not load clients"
+      );
+
+      return [];
+
+    }
+
+
+    return await response.json();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    return [];
+
+  }
+
+}
+
+
+/* =========================================
+   SHOW ALL CLIENTS
+========================================= */
+
+async function showClients(){
+
+  document.getElementById("dashboard")
+    .classList.add("hidden");
+
+  document.getElementById("clientForm")
+    .classList.add("hidden");
+
+  document.getElementById("clientsSection")
+    .classList.remove("hidden");
+
+
+  const list =
+    document.getElementById("clientsList");
+
+
+  list.innerHTML =
+    "<p>Loading clients...</p>";
+
+
+  const clients =
+    await loadClientsFromSupabase();
+
+
+  if(clients.length === 0){
+
+    list.innerHTML =
+      "<p>No clients found yet.</p>";
+
+    return;
+
+  }
+
+
+  let html = "";
+
+
+  clients.forEach(function(c){
+
+    html += `
+
+      <div class="client-item">
+
+        <div>
+
+          <strong>${c.name}</strong>
+
+          <br>
+
+          <small>
+            ${c.category || ""}
+            •
+            ${c.location || ""}
+          </small>
+
+        </div>
+
+        <button onclick='openClient(${JSON.stringify(c)})'>
+          Open
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
+
+  list.innerHTML = html;
+
+}
+
+
+/* =========================================
+   OPEN SAVED CLIENT
+========================================= */
+
+function openClient(c){
+
+  client = c;
+
+
+  document.getElementById("clientsSection")
+    .classList.add("hidden");
+
+
+  document.getElementById("dashboard")
+    .classList.remove("hidden");
+
+
+  document.getElementById("title").innerHTML =
+    "Welcome, " + c.name + " 👋";
+
+
+  document.getElementById("subtitle").innerHTML =
+    (c.category || "") +
+    " • " +
+    (c.location || "");
+
+
+  document.getElementById("score").innerHTML =
+    "62/100";
+
+
+  document.getElementById("problems").innerHTML =
+    "4";
+
+
+  document.getElementById("opportunities").innerHTML =
+    "12";
+
+
+  document.getElementById("auditResults").innerHTML = `
+
+    <div class="result">
+      ⚠️ Missing high-intent service keywords.
+    </div>
+
+    <div class="result">
+      ⚠️ Google Business description can be improved.
+    </div>
+
+    <div class="result">
+      ⚠️ Regular Google Posts recommended.
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================
+   OUTPUT FUNCTION
+========================================= */
 
 function showOutput(title,content){
- const output=document.getElementById("output");
- output.classList.remove("hidden");
- output.innerHTML=`<h2>${title}</h2><div class="result">${content}</div>
- <button class="green" onclick="copyOutput()">📋 Copy Result</button>`;
+
+  const output =
+    document.getElementById("output");
+
+
+  output.classList.remove("hidden");
+
+
+  output.innerHTML = `
+
+    <h2>${title}</h2>
+
+    <div class="result">
+      ${content}
+    </div>
+
+    <button class="green"
+    onclick="copyOutput()">
+
+      📋 Copy Result
+
+    </button>
+
+  `;
+
 }
+
+
+/* =========================================
+   COPY OUTPUT
+========================================= */
 
 function copyOutput(){
- const text=document.getElementById("output").innerText;
- navigator.clipboard.writeText(text);
- alert("Copied!");
+
+  const text =
+    document.getElementById("output")
+    .innerText;
+
+
+  navigator.clipboard
+    .writeText(text);
+
+
+  alert("Copied!");
+
 }
+
+
+/* =========================================
+   GENERATE DESCRIPTION
+========================================= */
 
 function generateDescription(){
- const name=client.name || "Your Business";
- const location=client.location || "your location";
 
- showOutput("📝 Optimized Business Description",
- `<strong>${name}</strong> is a trusted laptop and computer repair service in ${location}. We provide professional laptop motherboard repair, screen replacement, keyboard repair, charging issue repair, battery replacement, overheating solutions and computer servicing. Our technicians support HP, Dell, Lenovo, Asus, Acer and other major brands. Get reliable diagnosis, quality repairs and quick service.`);
+  const name =
+    client.name ||
+    "Your Business";
+
+
+  const location =
+    client.location ||
+    "your location";
+
+
+  showOutput(
+
+    "📝 Optimized Business Description",
+
+    `<strong>${name}</strong> is a trusted laptop and computer repair service in ${location}. We provide professional laptop motherboard repair, screen replacement, keyboard repair, charging issue repair, battery replacement, overheating solutions and computer servicing. Our technicians support HP, Dell, Lenovo, Asus, Acer and other major brands. Get reliable diagnosis, quality repairs and quick service.`
+
+  );
+
 }
+
+
+/* =========================================
+   GENERATE SERVICES
+========================================= */
 
 function generateServices(){
 
- const services=[
- "Laptop Repair Service",
- "Laptop Motherboard Repair",
- "Laptop Screen Replacement",
- "Laptop Keyboard Replacement",
- "Laptop Hinge Repair",
- "Laptop Charging Problem Repair",
- "Laptop Battery Replacement",
- "Laptop Water Damage Repair",
- "Laptop Overheating Repair",
- "Laptop Data Recovery",
- "HP Laptop Repair",
- "Dell Laptop Repair",
- "Lenovo Laptop Repair",
- "Asus Laptop Repair",
- "Acer Laptop Repair"
- ];
+  const services = [
 
- let html="<p><strong>Recommended high-intent services:</strong></p>";
- services.forEach(s=>html+=`<div class="service">✓ ${s}</div>`);
+    "Laptop Repair Service",
+    "Laptop Motherboard Repair",
+    "Laptop Screen Replacement",
+    "Laptop Keyboard Replacement",
+    "Laptop Hinge Repair",
+    "Laptop Charging Problem Repair",
+    "Laptop Battery Replacement",
+    "Laptop Water Damage Repair",
+    "Laptop Overheating Repair",
+    "Laptop Data Recovery",
+    "HP Laptop Repair",
+    "Dell Laptop Repair",
+    "Lenovo Laptop Repair",
+    "Asus Laptop Repair",
+    "Acer Laptop Repair"
 
- showOutput("🛠 AI Recommended Services",html);
+  ];
+
+
+  let html =
+    "<p><strong>Recommended high-intent services:</strong></p>";
+
+
+  services.forEach(function(service){
+
+    html +=
+    `<div class="service">
+      ✓ ${service}
+    </div>`;
+
+  });
+
+
+  showOutput(
+    "🛠 AI Recommended Services",
+    html
+  );
+
 }
+
+
+/* =========================================
+   GENERATE GOOGLE POSTS
+========================================= */
 
 function generatePosts(){
 
- const posts=[
- "🔧 Laptop running slow? Get professional diagnosis and repair today. Visit us for reliable laptop servicing.",
- "💻 Laptop screen broken? We provide professional laptop screen replacement for major brands.",
- "⚡ Laptop not charging? Our technicians can diagnose charging port, adapter and motherboard issues.",
- "🔥 Laptop overheating? Get cleaning, thermal servicing and cooling issue repair from experts."
- ];
+  const posts = [
 
- let html="";
- posts.forEach((p,i)=>html+=`<div class="result"><strong>Google Post ${i+1}</strong><br><br>${p}</div>`);
+    "🔧 Laptop running slow? Get professional diagnosis and repair today. Visit us for reliable laptop servicing.",
 
- showOutput("📅 AI Generated Google Posts",html);
+    "💻 Laptop screen broken? We provide professional laptop screen replacement for major brands.",
+
+    "⚡ Laptop not charging? Our technicians can diagnose charging port, adapter and motherboard issues.",
+
+    "🔥 Laptop overheating? Get cleaning, thermal servicing and cooling issue repair from experts."
+
+  ];
+
+
+  let html = "";
+
+
+  posts.forEach(function(post,index){
+
+    html += `
+
+      <div class="result">
+
+        <strong>
+          Google Post ${index + 1}
+        </strong>
+
+        <br><br>
+
+        ${post}
+
+      </div>
+
+    `;
+
+  });
+
+
+  showOutput(
+    "📅 AI Generated Google Posts",
+    html
+  );
+
 }
 
-window.onload=function(){
- const saved=localStorage.getItem("localboostClient");
- if(saved){
-   client=JSON.parse(saved);
- }
-}
+
+/* =========================================
+   LOAD SAVED CLIENT
+========================================= */
+
+window.onload = function(){
+
+  const saved =
+    localStorage.getItem(
+      "localboostClient"
+    );
+
+
+  if(saved){
+
+    client =
+      JSON.parse(saved);
+
+  }
+
+};
 
 </script>
 

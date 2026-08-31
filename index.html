@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LocalBoost AI</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f6f8fb;
+  color:#1e293b;
+}
+header{
+  background:#111827;
+  color:white;
+  padding:18px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo{
+  font-size:24px;
+  font-weight:bold;
+}
+.logo span{color:#22c55e}
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:30px 20px;
+}
+.hero{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+h1{margin:0;font-size:30px}
+.subtitle{color:#64748b;margin-top:8px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+.card{
+  background:white;
+  padding:22px;
+  border-radius:14px;
+  box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+.number{
+  font-size:32px;
+  font-weight:bold;
+  color:#2563eb;
+}
+.label{color:#64748b;margin-top:6px}
+.score{
+  font-size:52px;
+  font-weight:bold;
+  color:#f59e0b;
+}
+.section{
+  background:white;
+  margin-top:25px;
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+.problem{
+  padding:14px;
+  margin:10px 0;
+  border-left:4px solid #ef4444;
+  background:#fff7f7;
+}
+.good{
+  border-left-color:#22c55e;
+  background:#f0fdf4;
+}
+button{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:13px 20px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:bold;
+}
+button:hover{background:#1d4ed8}
+.green{background:#16a34a}
+.green:hover{background:#15803d}
+textarea{
+  width:100%;
+  min-height:130px;
+  padding:15px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  font-size:15px;
+}
+.nav button{
+  background:transparent;
+  margin-left:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">LocalBoost <span>AI</span></div>
+  <div>AI Agent for Local Business Growth</div>
+</header>
+
+<div class="container">
+
+<div class="hero">
+<div>
+<h1>Welcome, DK Technologies 👋</h1>
+<div class="subtitle">Google Business Profile Growth Dashboard</div>
+</div>
+<button class="green" onclick="runAudit()">⚡ Run AI Audit</button>
+</div>
+
+<div class="grid">
+<div class="card">
+<div class="number">142</div>
+<div class="label">Google Calls (6 Months)</div>
+</div>
+
+<div class="card">
+<div class="number">560</div>
+<div class="label">Business Interactions</div>
+</div>
+
+<div class="card">
+<div class="number">4.4 ⭐</div>
+<div class="label">Google Rating</div>
+</div>
+
+<div class="card">
+<div class="number">124</div>
+<div class="label">Google Reviews</div>
+</div>
+</div>
+
+<div class="section">
+<h2>🤖 AI Optimization Score</h2>
+<div class="score" id="score">62/100</div>
+<p>Your profile has strong foundations but needs optimization for higher Google Maps visibility and calls.</p>
+</div>
+
+<div class="section">
+<h2>🔍 Problems Found</h2>
+
+<div class="problem">
+<strong>High Priority:</strong> Services are too broad and dilute laptop repair relevance.
+</div>
+
+<div class="problem">
+<strong>High Priority:</strong> Missing high-intent service keywords.
+</div>
+
+<div class="problem">
+<strong>Medium Priority:</strong> Business profile needs consistent Google Posts.
+</div>
+
+<div class="problem good">
+<strong>Strength:</strong> 124 Google reviews provide strong trust signals.
+</div>
+
+</div>
+
+<div class="section">
+<h2>🚀 AI Recommended Actions</h2>
+
+<p>✓ Focus profile on Laptop & Computer Repair</p>
+<p>✓ Add motherboard repair service</p>
+<p>✓ Add screen replacement service</p>
+<p>✓ Add charging problem repair</p>
+<p>✓ Add brand-specific laptop services</p>
+<p>✓ Publish weekly Google Posts</p>
+
+<button onclick="generateDescription()">Generate AI Optimized Description</button>
+
+<div id="result" style="margin-top:20px"></div>
+
+</div>
+
+</div>
+
+<script>
+
+function runAudit(){
+document.getElementById("score").innerHTML="68/100";
+alert("AI Audit Complete! 12 optimization opportunities found.");
+}
+
+function generateDescription(){
+
+document.getElementById("result").innerHTML=`
+<h3>AI Optimized Business Description</h3>
+
+<textarea>DK Technologies is a trusted laptop and computer repair service centre in Garia, Kolkata. We provide professional laptop motherboard repair, screen replacement, keyboard repair, charging issue repair, battery replacement, overheating solutions and computer servicing. Expert repair support is available for HP, Dell, Lenovo, Asus, Acer and other major laptop brands. Visit us for reliable diagnosis, quality repairs and quick service.</textarea>
+
+<br><br>
+
+<button class="green" onclick="alert('Saved to Optimization Queue!')">
+✓ Add to Optimization Queue
+</button>
+`;
+}
+
+</script>
+
+</body>
+</html>

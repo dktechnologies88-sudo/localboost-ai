@@ -4,207 +4,236 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LocalBoost AI</title>
+<title>LocalBoost AI - Growth Engine</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f4f7fb;
-  color:#1e293b;
+margin:0;
+font-family:Arial,sans-serif;
+background:#f4f7fb;
+color:#1e293b;
 }
 
 header{
-  background:#111827;
-  color:white;
-  padding:18px 6%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+background:#111827;
+color:white;
+padding:18px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .logo{
-  font-size:25px;
-  font-weight:bold;
+font-size:25px;
+font-weight:bold;
 }
 
-.logo span{
-  color:#22c55e;
-}
+.logo span{color:#22c55e}
 
 .container{
-  max-width:1200px;
-  margin:auto;
-  padding:25px;
+max-width:1200px;
+margin:auto;
+padding:25px;
 }
 
-.section,
-.card{
-  background:white;
-  border-radius:14px;
-  padding:22px;
-  margin-bottom:20px;
-  box-shadow:0 4px 15px rgba(0,0,0,.07);
+.section,.card{
+background:white;
+border-radius:14px;
+padding:22px;
+margin-bottom:20px;
+box-shadow:0 4px 15px rgba(0,0,0,.07);
 }
 
 .grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:15px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
 }
 
 .number{
-  font-size:32px;
-  font-weight:bold;
-  color:#2563eb;
+font-size:32px;
+font-weight:bold;
+color:#2563eb;
 }
 
-.big-number{
-  font-size:42px;
-  font-weight:bold;
-  color:#f59e0b;
-}
+.orange{color:#f59e0b}
+.green-text{color:#16a34a}
+.red-text{color:#dc2626}
 
 .label{
-  color:#64748b;
-  margin-top:7px;
+color:#64748b;
+margin-top:7px;
 }
 
-input,
-textarea{
-  width:100%;
-  padding:13px;
-  margin:7px 0 15px;
-  border:1px solid #d1d5db;
-  border-radius:8px;
-  font-size:15px;
-}
-
-textarea{
-  min-height:110px;
+input,textarea{
+width:100%;
+padding:13px;
+margin:7px 0 15px;
+border:1px solid #d1d5db;
+border-radius:8px;
+font-size:15px;
 }
 
 button{
-  background:#2563eb;
-  color:white;
-  border:none;
-  padding:12px 18px;
-  border-radius:8px;
-  font-size:15px;
-  font-weight:bold;
-  cursor:pointer;
-  margin:4px;
+background:#2563eb;
+color:white;
+border:none;
+padding:12px 18px;
+border-radius:8px;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+margin:4px;
 }
 
-button:hover{
-  background:#1d4ed8;
-}
+button:hover{background:#1d4ed8}
 
 .green{
-  background:#16a34a;
-}
-
-.green:hover{
-  background:#15803d;
+background:#16a34a;
 }
 
 .red{
-  background:#dc2626;
+background:#dc2626;
 }
 
-.hidden{
-  display:none;
-}
+.hidden{display:none}
 
 .result{
-  background:#f8fafc;
-  border-left:4px solid #2563eb;
-  padding:15px;
-  margin:10px 0;
-  border-radius:7px;
+background:#f8fafc;
+border-left:4px solid #2563eb;
+padding:15px;
+margin:10px 0;
+border-radius:7px;
 }
 
 .problem{
-  border-left-color:#ef4444;
-  background:#fff7f7;
+border-left-color:#ef4444;
+background:#fff7f7;
 }
 
 .good{
-  border-left-color:#22c55e;
-  background:#f0fdf4;
+border-left-color:#22c55e;
+background:#f0fdf4;
 }
 
 .service{
-  padding:12px;
-  border-bottom:1px solid #e5e7eb;
+padding:12px;
+border-bottom:1px solid #e5e7eb;
 }
 
 .client-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px;
-  border:1px solid #e5e7eb;
-  border-radius:10px;
-  margin:10px 0;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px;
+border:1px solid #e5e7eb;
+border-radius:10px;
+margin:10px 0;
 }
 
 .progress-bg{
-  background:#e5e7eb;
-  height:20px;
-  border-radius:20px;
-  overflow:hidden;
-  margin:15px 0;
+background:#e5e7eb;
+height:22px;
+border-radius:20px;
+overflow:hidden;
+margin:15px 0;
 }
 
 .progress-bar{
-  background:#22c55e;
-  height:100%;
-  width:4%;
-  border-radius:20px;
+background:#22c55e;
+height:100%;
+width:0%;
+border-radius:20px;
+transition:.5s;
 }
 
 .task{
-  padding:14px;
-  margin:8px 0;
-  background:#f8fafc;
-  border-radius:8px;
+padding:14px;
+margin:8px 0;
+background:#f8fafc;
+border-radius:8px;
 }
 
 .task input{
-  width:auto;
-  margin-right:10px;
+width:auto;
+margin-right:10px;
 }
 
-.output-box{
-  white-space:pre-line;
-  line-height:1.6;
+.table-wrap{
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+th,td{
+padding:12px;
+text-align:left;
+border-bottom:1px solid #e5e7eb;
+}
+
+th{
+background:#f8fafc;
 }
 
 .status{
-  color:#16a34a;
-  font-weight:bold;
-  margin-top:10px;
+color:#16a34a;
+font-weight:bold;
+}
+
+.chart{
+display:flex;
+align-items:flex-end;
+gap:10px;
+height:220px;
+padding:20px;
+border-bottom:2px solid #cbd5e1;
+overflow-x:auto;
+}
+
+.bar-wrap{
+min-width:45px;
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:flex-end;
+align-items:center;
+}
+
+.bar{
+width:30px;
+background:#2563eb;
+border-radius:6px 6px 0 0;
+min-height:3px;
+}
+
+.bar-label{
+font-size:11px;
+margin-top:6px;
+}
+
+.bar-value{
+font-size:12px;
+font-weight:bold;
+margin-bottom:5px;
 }
 
 @media(max-width:600px){
+header{
+flex-direction:column;
+gap:8px;
+text-align:center;
+}
 
-  header{
-    flex-direction:column;
-    gap:8px;
-    text-align:center;
-  }
-
-  .client-item{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:10px;
-  }
-
+.client-item{
+flex-direction:column;
+align-items:flex-start;
+}
 }
 </style>
 </head>
@@ -212,66 +241,45 @@ button:hover{
 <body>
 
 <header>
-  <div class="logo">
-    LocalBoost <span>AI</span>
-  </div>
-
-  <div>
-    AI Agent for Local Business Growth
-  </div>
+<div class="logo">LocalBoost <span>AI</span></div>
+<div>AI Agent for Local Business Growth</div>
 </header>
-
 
 <div class="container">
 
-
-<!-- MAIN MENU -->
+<!-- MAIN DASHBOARD -->
 
 <div class="section">
-
 <h2>🚀 LocalBoost AI Dashboard</h2>
 
-<button class="green" onclick="showClientForm()">
-➕ Add Client
-</button>
-
-<button onclick="loadDK()">
-💻 Load DK Technologies
-</button>
-
-<button onclick="showClients()">
-👥 View All Clients
-</button>
-
+<button class="green" onclick="showClientForm()">➕ Add Client</button>
+<button onclick="loadDK()">💻 Load DK Technologies</button>
+<button onclick="showClients()">👥 View All Clients</button>
 </div>
 
 
-<!-- ADD CLIENT -->
+<!-- CLIENT FORM -->
 
 <div id="clientForm" class="section hidden">
 
 <h2>➕ Add Business Client</h2>
 
 <label>Business Name</label>
-<input id="businessName" placeholder="Business name">
+<input id="businessName">
 
 <label>Business Category</label>
-<input id="category" placeholder="Laptop Repair Service">
+<input id="category">
 
 <label>Location</label>
-<input id="location" placeholder="Garia, Kolkata">
+<input id="location">
 
-<label>Current Business Description</label>
-<textarea id="description"
-placeholder="Paste current business description"></textarea>
+<label>Business Description</label>
+<textarea id="description"></textarea>
 
-<label>Current Services</label>
-<textarea id="services"
-placeholder="One service per line"></textarea>
+<label>Services</label>
+<textarea id="services"></textarea>
 
-<button class="green" onclick="runAudit()">
-⚡ Run AI Audit
-</button>
+<button class="green" onclick="runAudit()">⚡ Run AI Audit</button>
 
 </div>
 
@@ -279,33 +287,27 @@ placeholder="One service per line"></textarea>
 <!-- CLIENT LIST -->
 
 <div id="clientsSection" class="section hidden">
-
 <h2>👥 Saved Clients</h2>
-
-<div id="clientsList">
-Loading clients...
-</div>
-
+<div id="clientsList">Loading...</div>
 </div>
 
 
-<!-- BUSINESS DASHBOARD -->
+<!-- DASHBOARD -->
 
-<div id="dashboard" class="hidden">
-
+<div id="dashboard">
 
 <div class="section">
 
-<h1 id="title">
-Business Dashboard
-</h1>
+<h1 id="title">Welcome, DK Technologies 👋</h1>
 
-<p id="subtitle"></p>
+<p id="subtitle">
+Laptop & Computer Repair Service • Garia, Kolkata
+</p>
 
 </div>
 
 
-<!-- GROWTH TARGET -->
+<!-- CALL TARGET -->
 
 <div class="section">
 
@@ -314,35 +316,148 @@ Business Dashboard
 <div class="grid">
 
 <div class="card">
-<div class="big-number">0.8</div>
-<div class="label">
-Current Avg Calls / Day
-</div>
+<div class="number orange" id="currentAverage">0</div>
+<div class="label">Current Avg Calls / Day</div>
 </div>
 
 <div class="card">
-<div class="big-number">20</div>
-<div class="label">
-Target Calls / Day
-</div>
+<div class="number orange">20</div>
+<div class="label">Target Calls / Day</div>
 </div>
 
 <div class="card">
-<div class="big-number">19.2</div>
-<div class="label">
-Daily Call Gap
-</div>
+<div class="number orange" id="callGap">20</div>
+<div class="label">Daily Call Gap</div>
 </div>
 
 </div>
 
 <div class="progress-bg">
-<div class="progress-bar"></div>
+<div id="progressBar" class="progress-bar"></div>
 </div>
 
-<p>
-Current progress towards 20 daily calls.
-</p>
+<p id="progressText">Start tracking daily calls.</p>
+
+</div>
+
+
+<!-- DAILY CALL TRACKER -->
+
+<div class="section">
+
+<h2>📞 Daily Performance Tracker</h2>
+
+<div class="grid">
+
+<div>
+<label>Date</label>
+<input type="date" id="callDate">
+</div>
+
+<div>
+<label>Google Calls Received</label>
+<input type="number" id="dailyCalls" min="0" placeholder="Example: 5">
+</div>
+
+<div>
+<label>New Google Reviews</label>
+<input type="number" id="dailyReviews" min="0" placeholder="Example: 2">
+</div>
+
+<div>
+<label>Google Posts Published</label>
+<input type="number" id="dailyPosts" min="0" placeholder="Example: 1">
+</div>
+
+</div>
+
+<button class="green" onclick="saveDailyPerformance()">
+💾 Save Today's Performance
+</button>
+
+<div id="saveStatus"></div>
+
+</div>
+
+
+<!-- PERFORMANCE STATS -->
+
+<div class="section">
+
+<h2>📊 Real Performance Analytics</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="number" id="todayCalls">0</div>
+<div class="label">Today's Calls</div>
+</div>
+
+<div class="card">
+<div class="number" id="sevenDayAvg">0</div>
+<div class="label">7-Day Avg Calls</div>
+</div>
+
+<div class="card">
+<div class="number" id="thirtyDayAvg">0</div>
+<div class="label">30-Day Avg Calls</div>
+</div>
+
+<div class="card">
+<div class="number green-text" id="totalReviews">0</div>
+<div class="label">Reviews Tracked</div>
+</div>
+
+<div class="card">
+<div class="number" id="totalPosts">0</div>
+<div class="label">Posts Published</div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CHART -->
+
+<div class="section">
+
+<h2>📈 Call Growth Chart</h2>
+
+<div id="callChart" class="chart">
+<p>No performance data yet.</p>
+</div>
+
+</div>
+
+
+<!-- HISTORY -->
+
+<div class="section">
+
+<h2>🗓 Performance History</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Date</th>
+<th>Calls</th>
+<th>Reviews</th>
+<th>Posts</th>
+<th>Target Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="historyTable">
+</tbody>
+
+</table>
+
+</div>
 
 </div>
 
@@ -352,35 +467,31 @@ Current progress towards 20 daily calls.
 <div class="grid">
 
 <div class="card">
-<div class="number" id="score">
---
+<div class="number" id="score">60/100</div>
+<div class="label">AI Optimization Score</div>
 </div>
-
-<div class="label">
-AI Optimization Score
-</div>
-</div>
-
 
 <div class="card">
-<div class="number" id="problems">
---
+<div class="number" id="problems">5</div>
+<div class="label">Problems Found</div>
 </div>
-
-<div class="label">
-Problems Found
-</div>
-</div>
-
 
 <div class="card">
-<div class="number" id="opportunities">
---
+<div class="number" id="opportunities">20</div>
+<div class="label">Growth Opportunities</div>
 </div>
 
-<div class="label">
-Growth Opportunities
 </div>
+
+
+<!-- AI RECOMMENDATION -->
+
+<div class="section">
+
+<h2>🤖 AI Performance Recommendation</h2>
+
+<div id="aiRecommendation" class="result">
+Start entering daily call data. LocalBoost AI will analyze your progress.
 </div>
 
 </div>
@@ -392,7 +503,29 @@ Growth Opportunities
 
 <h2>🔍 AI Audit Results</h2>
 
-<div id="auditResults"></div>
+<div id="auditResults">
+
+<div class="result problem">
+⚠️ Business description needs stronger local keywords.
+</div>
+
+<div class="result problem">
+⚠️ Missing high-intent motherboard repair service.
+</div>
+
+<div class="result problem">
+⚠️ Missing laptop screen replacement service.
+</div>
+
+<div class="result problem">
+⚠️ Missing laptop charging problem repair service.
+</div>
+
+<div class="result problem">
+⚠️ Missing laptop keyboard replacement service.
+</div>
+
+</div>
 
 </div>
 
@@ -423,17 +556,11 @@ Growth Opportunities
 
 <h2>🤖 AI Growth Tools</h2>
 
-<button onclick="generateDescription()">
-📝 Optimize Description
-</button>
+<button onclick="generateDescription()">📝 Optimize Description</button>
 
-<button onclick="generateServices()">
-🛠 Generate Services
-</button>
+<button onclick="generateServices()">🛠 Generate Services</button>
 
-<button onclick="generatePosts()">
-📅 Generate Google Posts
-</button>
+<button onclick="generatePosts()">📅 Generate Google Posts</button>
 
 <button class="green" onclick="generateGrowthPlan()">
 🚀 Generate 20 Calls/Day Plan
@@ -449,32 +576,32 @@ Growth Opportunities
 <h2>✅ Daily Growth Tasks</h2>
 
 <div class="task">
-<input type="checkbox">
+<input type="checkbox" class="taskCheck">
 Publish 1 Google Business Profile Post
 </div>
 
 <div class="task">
-<input type="checkbox">
+<input type="checkbox" class="taskCheck">
 Request Google Reviews from 3 customers
 </div>
 
 <div class="task">
-<input type="checkbox">
+<input type="checkbox" class="taskCheck">
 Reply to all new Google Reviews
 </div>
 
 <div class="task">
-<input type="checkbox">
+<input type="checkbox" class="taskCheck">
 Upload 1 real business photo
 </div>
 
 <div class="task">
-<input type="checkbox">
+<input type="checkbox" class="taskCheck">
 Check new search keyword opportunities
 </div>
 
 <div class="task">
-<input type="checkbox">
+<input type="checkbox" class="taskCheck">
 Track today's incoming calls
 </div>
 
@@ -485,827 +612,663 @@ Track today's incoming calls
 
 <div id="output" class="section hidden"></div>
 
-
 </div>
-
 </div>
 
 
 <script>
 
-/* ===================================
-SUPABASE CONFIG
-=================================== */
+/* ===============================
+CONFIG
+=============================== */
 
-const SUPABASE_URL =
-"https://dlnvjebqrtjmviedclli.supabase.co";
-
-const SUPABASE_KEY =
-"sb_publishable_jxENr4ZPBWgtEgEdxf7Svw_QgwEP3FZ";
-
-
-let client = {};
-
-
-/* ===================================
-SHOW ADD CLIENT
-=================================== */
-
-function showClientForm(){
-
-document.getElementById("clientForm")
-.classList.remove("hidden");
-
-document.getElementById("dashboard")
-.classList.add("hidden");
-
-document.getElementById("clientsSection")
-.classList.add("hidden");
-
-}
-
-
-/* ===================================
-LOAD DK TECHNOLOGIES
-=================================== */
-
-function loadDK(){
-
-showClientForm();
-
-document.getElementById("businessName").value =
-"DK Technologies";
-
-document.getElementById("category").value =
-"Laptop & Computer Repair Service";
-
-document.getElementById("location").value =
-"Garia, Kolkata";
-
-document.getElementById("description").value =
-"DK Technologies provides professional laptop and computer repair services.";
-
-document.getElementById("services").value =
-`Laptop repair
-Computer repair
-Mac repair
-Network setup
-Printer repair
-Software installation`;
-
-}
-
-
-/* ===================================
-RUN AUDIT
-=================================== */
-
-async function runAudit(){
-
-const name =
-document.getElementById("businessName").value ||
-"Your Business";
-
-const category =
-document.getElementById("category").value;
-
-const location =
-document.getElementById("location").value;
-
-const description =
-document.getElementById("description").value;
-
-const services =
-document.getElementById("services").value;
-
-
-client = {
-name,
-category,
-location,
-description,
-services
+let client = {
+name:"DK Technologies",
+category:"Laptop & Computer Repair Service",
+location:"Garia, Kolkata"
 };
 
 
-/* LOCAL SAVE */
+/* ===============================
+DEFAULT DATE
+=============================== */
 
-localStorage.setItem(
-"localboostClient",
-JSON.stringify(client)
-);
-
-
-/* DATABASE SAVE */
-
-await saveClientToSupabase();
+document.getElementById("callDate").value =
+new Date().toISOString().split("T")[0];
 
 
-let score = 55;
+/* ===============================
+CLIENT FUNCTIONS
+=============================== */
 
-let issues = [];
+function showClientForm(){
 
-
-if(description.length > 150){
-
-score += 10;
-
-}else{
-
-issues.push(
-"Business description is too short for strong local relevance."
-);
+document.getElementById("clientForm").classList.remove("hidden");
+document.getElementById("clientsSection").classList.add("hidden");
 
 }
 
+function loadDK(){
 
-if(location){
+client={
+name:"DK Technologies",
+category:"Laptop & Computer Repair Service",
+location:"Garia, Kolkata"
+};
 
-score += 5;
-
-}else{
-
-issues.push(
-"Location keyword is missing."
-);
-
-}
-
-
-if(
-services.toLowerCase().includes("motherboard")
-){
-
-score += 5;
-
-}else{
-
-issues.push(
-"Missing high-intent motherboard repair service."
-);
-
-}
-
-
-if(
-services.toLowerCase().includes("screen")
-){
-
-score += 5;
-
-}else{
-
-issues.push(
-"Missing laptop screen replacement service."
-);
-
-}
-
-
-if(
-services.toLowerCase().includes("charging")
-){
-
-score += 5;
-
-}else{
-
-issues.push(
-"Missing laptop charging problem repair service."
-);
-
-}
-
-
-if(
-services.toLowerCase().includes("keyboard")
-){
-
-score += 5;
-
-}else{
-
-issues.push(
-"Missing laptop keyboard replacement service."
-);
-
-}
-
-
-if(issues.length === 0){
-
-issues.push(
-"Profile structure is strong. Focus on reviews, posts and local authority."
-);
-
-}
-
-
-document.getElementById("clientForm")
-.classList.add("hidden");
-
-document.getElementById("clientsSection")
-.classList.add("hidden");
-
-document.getElementById("dashboard")
-.classList.remove("hidden");
-
-
-document.getElementById("title").innerHTML =
-"Welcome, " + name + " 👋";
-
-
-document.getElementById("subtitle").innerHTML =
-category + " • " + location;
-
-
-document.getElementById("score").innerHTML =
-score + "/100";
-
-
-document.getElementById("problems").innerHTML =
-issues.length;
-
-
-document.getElementById("opportunities").innerHTML =
-"20";
-
-
-let html = "";
-
-issues.forEach(function(issue){
-
-html += `
-<div class="result problem">
-⚠️ ${issue}
-</div>
-`;
-
+document.getElementById("dashboard").scrollIntoView({
+behavior:"smooth"
 });
 
+updateDashboard();
 
-html += `
-<div class="result good">
-<strong>Growth Goal:</strong>
-Increase local visibility and work toward 20 qualified calls per day.
-</div>
-`;
+}
 
-html += `
-<div class="status">
-✓ Client saved successfully
-</div>
-`;
+function showClients(){
 
-
-document.getElementById("auditResults").innerHTML =
-html;
+alert("Client database is already connected in your previous Supabase version. This upgrade focuses on performance tracking.");
 
 }
 
 
-/* ===================================
-SAVE CLIENT TO SUPABASE
-=================================== */
+/* ===============================
+AUDIT
+=============================== */
 
-async function saveClientToSupabase(){
+function runAudit(){
 
-try{
+client={
+name:document.getElementById("businessName").value || "Business",
+category:document.getElementById("category").value,
+location:document.getElementById("location").value
+};
 
-const response = await fetch(
+document.getElementById("title").innerHTML=
+"Welcome, "+client.name+" 👋";
 
-SUPABASE_URL + "/rest/v1/clients",
+document.getElementById("subtitle").innerHTML=
+client.category+" • "+client.location;
 
-{
+document.getElementById("clientForm").classList.add("hidden");
 
-method:"POST",
-
-headers:{
-
-"Content-Type":"application/json",
-
-"apikey":SUPABASE_KEY,
-
-"Authorization":
-"Bearer " + SUPABASE_KEY,
-
-"Prefer":"return=representation"
-
-},
-
-body:JSON.stringify({
-
-name:client.name,
-
-category:client.category,
-
-location:client.location,
-
-description:client.description,
-
-services:client.services
-
-})
-
-}
-
-);
-
-
-if(!response.ok){
-
-console.error(
-"Database error:",
-await response.text()
-);
-
-return;
-
-}
-
-
-console.log("Client saved");
-
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-
-/* ===================================
-LOAD CLIENTS
-=================================== */
-
-async function loadClientsFromSupabase(){
-
-try{
-
-const response = await fetch(
-
-SUPABASE_URL +
-"/rest/v1/clients?select=*&order=created_at.desc",
-
-{
-
-headers:{
-
-"apikey":SUPABASE_KEY,
-
-"Authorization":
-"Bearer " + SUPABASE_KEY
-
-}
-
-}
-
-);
-
-
-if(!response.ok){
-
-return [];
-
-}
-
-
-return await response.json();
-
-
-}catch(error){
-
-console.error(error);
-
-return [];
-
-}
-
-}
-
-
-/* ===================================
-SHOW CLIENTS
-=================================== */
-
-async function showClients(){
-
-document.getElementById("dashboard")
-.classList.add("hidden");
-
-document.getElementById("clientForm")
-.classList.add("hidden");
-
-document.getElementById("clientsSection")
-.classList.remove("hidden");
-
-
-const list =
-document.getElementById("clientsList");
-
-
-list.innerHTML =
-"Loading clients...";
-
-
-const clients =
-await loadClientsFromSupabase();
-
-
-if(clients.length === 0){
-
-list.innerHTML =
-"No clients found.";
-
-return;
-
-}
-
-
-let html = "";
-
-
-clients.forEach(function(c,index){
-
-html += `
-
-<div class="client-item">
-
-<div>
-
-<strong>${c.name}</strong>
-
-<br>
-
-<small>
-${c.category || ""}
-•
-${c.location || ""}
-</small>
-
-</div>
-
-<button onclick="openClientByIndex(${index})">
-Open
-</button>
-
-</div>
-
-`;
-
-});
-
-
-window.savedClients = clients;
-
-list.innerHTML = html;
-
-}
-
-
-/* ===================================
-OPEN CLIENT
-=================================== */
-
-function openClientByIndex(index){
-
-const c =
-window.savedClients[index];
-
-client = c;
-
-
-document.getElementById("clientsSection")
-.classList.add("hidden");
-
-document.getElementById("dashboard")
-.classList.remove("hidden");
-
-
-document.getElementById("title").innerHTML =
-"Welcome, " + c.name + " 👋";
-
-
-document.getElementById("subtitle").innerHTML =
-(c.category || "") +
-" • " +
-(c.location || "");
-
-
-document.getElementById("score").innerHTML =
-"62/100";
-
-
-document.getElementById("problems").innerHTML =
-"5";
-
-
-document.getElementById("opportunities").innerHTML =
-"20";
-
-
-document.getElementById("auditResults").innerHTML = `
-
-<div class="result problem">
-⚠️ Missing high-intent service keywords.
-</div>
-
-<div class="result problem">
-⚠️ Business description needs stronger local SEO.
-</div>
-
-<div class="result problem">
-⚠️ More Google Posts recommended.
-</div>
-
-<div class="result problem">
-⚠️ Review growth should be increased.
-</div>
-
-<div class="result good">
-✓ Ready for LocalBoost AI Growth Plan.
-</div>
-
-`;
-
-}
-
-
-/* ===================================
-SHOW OUTPUT
-=================================== */
-
-function showOutput(title,content){
-
-const output =
-document.getElementById("output");
-
-
-output.classList.remove("hidden");
-
-
-output.innerHTML = `
-
-<h2>${title}</h2>
-
-<div class="result output-box">
-
-${content}
-
-</div>
-
-<button class="green"
-onclick="copyOutput()">
-
-📋 Copy Result
-
-</button>
-
-`;
-
-window.scrollTo({
-top:document.body.scrollHeight,
+document.getElementById("dashboard").scrollIntoView({
 behavior:"smooth"
 });
 
 }
 
 
-/* ===================================
-COPY OUTPUT
-=================================== */
+/* ===============================
+PERFORMANCE STORAGE
+=============================== */
+
+function getPerformanceData(){
+
+return JSON.parse(
+localStorage.getItem("localboostPerformance")
+)||[];
+
+}
+
+
+function savePerformanceData(data){
+
+localStorage.setItem(
+"localboostPerformance",
+JSON.stringify(data)
+);
+
+}
+
+
+/* ===============================
+SAVE DAILY PERFORMANCE
+=============================== */
+
+function saveDailyPerformance(){
+
+const date=document.getElementById("callDate").value;
+
+const calls=parseInt(
+document.getElementById("dailyCalls").value
+)||0;
+
+const reviews=parseInt(
+document.getElementById("dailyReviews").value
+)||0;
+
+const posts=parseInt(
+document.getElementById("dailyPosts").value
+)||0;
+
+
+if(!date){
+
+alert("Please select date");
+
+return;
+
+}
+
+
+let data=getPerformanceData();
+
+
+data=data.filter(function(item){
+
+return item.date!==date;
+
+});
+
+
+data.push({
+date:date,
+calls:calls,
+reviews:reviews,
+posts:posts
+});
+
+
+data.sort(function(a,b){
+
+return new Date(a.date)-new Date(b.date);
+
+});
+
+
+savePerformanceData(data);
+
+
+document.getElementById("saveStatus").innerHTML=
+`<p class="status">✓ Performance saved successfully!</p>`;
+
+
+document.getElementById("dailyCalls").value="";
+document.getElementById("dailyReviews").value="";
+document.getElementById("dailyPosts").value="";
+
+
+updateDashboard();
+
+}
+
+
+/* ===============================
+UPDATE DASHBOARD
+=============================== */
+
+function updateDashboard(){
+
+const data=getPerformanceData();
+
+const today=new Date().toISOString().split("T")[0];
+
+const todayData=data.find(function(item){
+return item.date===today;
+});
+
+const todayCalls=todayData ? todayData.calls : 0;
+
+
+const last7=data.slice(-7);
+
+const last30=data.slice(-30);
+
+
+function average(arr){
+
+if(arr.length===0)return 0;
+
+return (
+arr.reduce(function(sum,item){
+return sum+item.calls;
+},0)/arr.length
+).toFixed(1);
+
+}
+
+
+const avg7=average(last7);
+
+const avg30=average(last30);
+
+
+const totalReviews=data.reduce(function(sum,item){
+return sum+item.reviews;
+},0);
+
+
+const totalPosts=data.reduce(function(sum,item){
+return sum+item.posts;
+},0);
+
+
+const currentAvg=avg7>0 ? avg7 : avg30;
+
+const gap=Math.max(0,20-currentAvg).toFixed(1);
+
+const progress=Math.min(
+100,
+(currentAvg/20)*100
+);
+
+
+document.getElementById("currentAverage").innerHTML=currentAvg;
+
+document.getElementById("callGap").innerHTML=gap;
+
+document.getElementById("todayCalls").innerHTML=todayCalls;
+
+document.getElementById("sevenDayAvg").innerHTML=avg7;
+
+document.getElementById("thirtyDayAvg").innerHTML=avg30;
+
+document.getElementById("totalReviews").innerHTML=totalReviews;
+
+document.getElementById("totalPosts").innerHTML=totalPosts;
+
+
+document.getElementById("progressBar").style.width=
+progress+"%";
+
+
+document.getElementById("progressText").innerHTML=
+progress.toFixed(1)+"% progress toward your 20 calls/day target.";
+
+
+updateHistory(data);
+
+updateChart(data);
+
+generateAIRecommendation(
+currentAvg,
+avg7,
+avg30,
+totalReviews,
+totalPosts
+);
+
+}
+
+
+/* ===============================
+HISTORY
+=============================== */
+
+function updateHistory(data){
+
+const table=document.getElementById("historyTable");
+
+table.innerHTML="";
+
+
+const reversed=[...data].reverse();
+
+
+reversed.forEach(function(item,index){
+
+const status=item.calls>=20
+?
+"🎉 Target Achieved"
+:
+"⚠️ "+(20-item.calls)+" calls below target";
+
+
+table.innerHTML+=`
+
+<tr>
+
+<td>${item.date}</td>
+
+<td><strong>${item.calls}</strong></td>
+
+<td>${item.reviews}</td>
+
+<td>${item.posts}</td>
+
+<td>${status}</td>
+
+<td>
+<button class="red" onclick="deletePerformance('${item.date}')">
+Delete
+</button>
+</td>
+
+</tr>
+
+`;
+
+});
+
+
+if(data.length===0){
+
+table.innerHTML=
+"<tr><td colspan='6'>No data yet. Add today's performance above.</td></tr>";
+
+}
+
+}
+
+
+function deletePerformance(date){
+
+let data=getPerformanceData();
+
+data=data.filter(function(item){
+return item.date!==date;
+});
+
+savePerformanceData(data);
+
+updateDashboard();
+
+}
+
+
+/* ===============================
+CHART
+=============================== */
+
+function updateChart(data){
+
+const chart=document.getElementById("callChart");
+
+chart.innerHTML="";
+
+
+const last14=data.slice(-14);
+
+
+if(last14.length===0){
+
+chart.innerHTML="<p>No call data yet.</p>";
+
+return;
+
+}
+
+
+const max=Math.max(
+...last14.map(function(item){
+return item.calls;
+}),
+20
+);
+
+
+last14.forEach(function(item){
+
+const height=Math.max(
+5,
+(item.calls/max)*170
+);
+
+
+chart.innerHTML+=`
+
+<div class="bar-wrap">
+
+<div class="bar-value">
+${item.calls}
+</div>
+
+<div class="bar"
+style="height:${height}px">
+</div>
+
+<div class="bar-label">
+${item.date.slice(5)}
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* ===============================
+AI RECOMMENDATION
+=============================== */
+
+function generateAIRecommendation(
+currentAvg,
+avg7,
+avg30,
+reviews,
+posts
+){
+
+let message="";
+
+
+if(currentAvg==0){
+
+message=`
+📊 <strong>AI Analysis:</strong><br><br>
+No performance data available yet.<br>
+Start entering your actual daily Google calls.<br><br>
+For the next 7 days, focus on consistent tracking, Google Posts and review generation.
+`;
+
+}
+
+else if(currentAvg<5){
+
+message=`
+🔴 <strong>Critical Growth Gap</strong><br><br>
+Your current average is ${currentAvg} calls/day against a target of 20.<br><br>
+Priority actions:<br>
+1. Improve Google Business Profile services<br>
+2. Add high-intent local keywords<br>
+3. Generate more genuine customer reviews<br>
+4. Publish regular Google Posts<br>
+5. Improve phone-call conversion messaging
+`;
+
+}
+
+else if(currentAvg<10){
+
+message=`
+🟠 <strong>Growth Momentum Building</strong><br><br>
+Current average: ${currentAvg} calls/day.<br>
+You need to increase local visibility further.<br><br>
+Focus on reviews, service pages, location keywords and conversion optimization.
+`;
+
+}
+
+else if(currentAvg<20){
+
+message=`
+🟡 <strong>Strong Progress!</strong><br><br>
+Current average: ${currentAvg} calls/day.<br>
+You are moving toward the 20-call target.<br><br>
+Analyze which activities are generating calls and increase those efforts.
+`;
+
+}
+
+else{
+
+message=`
+🟢 <strong>TARGET ACHIEVED! 🎉</strong><br><br>
+Your current average has reached ${currentAvg} calls/day.<br><br>
+Now focus on maintaining quality leads and improving conversion.
+`;
+
+}
+
+
+document.getElementById("aiRecommendation").innerHTML=message;
+
+}
+
+
+/* ===============================
+AI OUTPUT
+=============================== */
+
+function showOutput(title,content){
+
+const output=document.getElementById("output");
+
+output.classList.remove("hidden");
+
+output.innerHTML=`
+<h2>${title}</h2>
+<div class="result output-box">${content}</div>
+<button class="green" onclick="copyOutput()">📋 Copy Result</button>
+`;
+
+output.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
 
 function copyOutput(){
 
-const text =
-document.getElementById("output").innerText;
-
-navigator.clipboard.writeText(text);
+navigator.clipboard.writeText(
+document.getElementById("output").innerText
+);
 
 alert("Copied!");
 
 }
 
 
-/* ===================================
-GENERATE DESCRIPTION
-=================================== */
+/* ===============================
+DESCRIPTION
+=============================== */
 
 function generateDescription(){
 
-const name =
-client.name ||
-"Your Business";
-
-const location =
-client.location ||
-"your location";
-
-
-const content =
-
-`${name} is a trusted laptop and computer repair service centre in ${location}. We provide professional laptop motherboard repair, laptop screen replacement, keyboard replacement, charging issue repair, battery replacement, overheating solutions, data recovery and complete computer servicing.
-
-Our experienced technicians repair HP, Dell, Lenovo, Asus, Acer and other major laptop brands. We focus on accurate diagnosis, quality repairs and quick turnaround time.
-
-Contact us for reliable laptop and computer repair support.`;
-
-
 showOutput(
-"📝 AI Optimized Business Description",
-content
+"📝 AI Optimized Description",
+
+`DK Technologies is a professional laptop and computer repair service centre in Garia, Kolkata. We provide laptop motherboard repair, screen replacement, keyboard replacement, charging issue repair, battery replacement, overheating solutions and complete computer servicing.
+
+We repair HP, Dell, Lenovo, Asus, Acer and other major laptop brands. Our focus is accurate diagnosis, reliable repairs and quick service.`
 );
 
 }
 
 
-/* ===================================
-GENERATE SERVICES
-=================================== */
+/* ===============================
+SERVICES
+=============================== */
 
 function generateServices(){
 
-const services = [
-
-"Laptop Repair Service",
-"Laptop Motherboard Repair",
-"Laptop Screen Replacement",
-"Laptop Keyboard Replacement",
-"Laptop Hinge Repair",
-"Laptop Charging Problem Repair",
-"Laptop Battery Replacement",
-"Laptop Water Damage Repair",
-"Laptop Overheating Repair",
-"Laptop Data Recovery",
-"Computer Repair Service",
-"Desktop Repair Service",
-"HP Laptop Repair",
-"Dell Laptop Repair",
-"Lenovo Laptop Repair",
-"Asus Laptop Repair",
-"Acer Laptop Repair",
-"MacBook Repair"
-
-];
-
-
-let html =
-"RECOMMENDED HIGH-INTENT SERVICES\n\n";
-
-
-services.forEach(function(service){
-
-html +=
-"✓ " + service + "\n";
-
-});
-
-
 showOutput(
-"🛠 AI Recommended Services",
-html
+"🛠 Recommended High-Intent Services",
+
+`✓ Laptop Repair
+✓ Laptop Motherboard Repair
+✓ Laptop Screen Replacement
+✓ Laptop Keyboard Replacement
+✓ Laptop Hinge Repair
+✓ Laptop Charging Problem Repair
+✓ Laptop Battery Replacement
+✓ Laptop Water Damage Repair
+✓ Laptop Overheating Repair
+✓ Data Recovery
+✓ HP Laptop Repair
+✓ Dell Laptop Repair
+✓ Lenovo Laptop Repair
+✓ Asus Laptop Repair`
 );
 
 }
 
 
-/* ===================================
-GENERATE GOOGLE POSTS
-=================================== */
+/* ===============================
+POSTS
+=============================== */
 
 function generatePosts(){
 
-const posts = [
-
-`DAY 1
-🔧 Laptop running slow?
-Get professional diagnosis and repair support. We help solve performance, heating and hardware issues.`,
-
-`DAY 2
-💻 Broken laptop screen?
-Professional laptop screen replacement available for major brands.`,
-
-`DAY 3
-⚡ Laptop not charging?
-We diagnose charging ports, batteries, adapters and motherboard-related faults.`,
-
-`DAY 4
-🔥 Laptop overheating?
-Get professional cleaning and cooling system servicing.`,
-
-`DAY 5
-⌨️ Keyboard not working?
-Get expert laptop keyboard diagnosis and replacement support.`,
-
-`DAY 6
-🔧 Motherboard problem?
-Professional diagnosis and repair for laptop motherboard issues.`,
-
-`DAY 7
-💻 Looking for reliable laptop repair in Garia?
-Contact us for professional laptop and computer servicing.`
-
-];
-
-
-let html = "";
-
-
-posts.forEach(function(post){
-
-html +=
-post + "\n\n-------------------\n\n";
-
-});
-
-
 showOutput(
 "📅 7-Day Google Post Plan",
-html
+
+`DAY 1
+Laptop running slow? Get professional diagnosis and repair support.
+
+DAY 2
+Broken laptop screen? Professional screen replacement available.
+
+DAY 3
+Laptop not charging? We diagnose charging ports, batteries and motherboard issues.
+
+DAY 4
+Laptop overheating? Get professional cleaning and cooling servicing.
+
+DAY 5
+Keyboard not working? Expert diagnosis and replacement support available.
+
+DAY 6
+Motherboard issue? Professional repair and diagnosis.
+
+DAY 7
+Looking for reliable laptop repair in Garia? Contact DK Technologies.`
 );
 
 }
 
 
-/* ===================================
-20 CALLS/DAY GROWTH PLAN
-=================================== */
+/* ===============================
+GROWTH PLAN
+=============================== */
 
 function generateGrowthPlan(){
 
-const plan =
-
-`LOCALBOOST AI - 20 CALLS/DAY GROWTH PLAN
-
-CURRENT POSITION
-• Current estimated average: 0.8 calls/day
-• Target: 20 calls/day
-• Main focus: Increase high-intent local visibility
-
-PHASE 1 - GOOGLE PROFILE
-✓ Optimize primary service positioning
-✓ Add high-intent repair services
-✓ Improve business description
-✓ Add real business photos
-✓ Improve review response strategy
-
-PHASE 2 - KEYWORDS
-Target searches such as:
-• Laptop repair Garia
-• Laptop service centre Garia
-• Computer repair Garia
-• Laptop motherboard repair
-• Laptop screen replacement
-• Laptop charging problem
-
-PHASE 3 - CONTENT
-• Publish Google Posts regularly
-• Add service-specific content
-• Add FAQs
-• Create local landing pages
-
-PHASE 4 - REVIEWS
-• Request reviews from genuine customers
-• Reply professionally to every review
-• Increase review frequency consistently
-
-PHASE 5 - CONVERSION
-• Make phone number highly visible
-• Add WhatsApp/contact options
-• Highlight quick diagnosis and delivery
-• Track which activities increase calls
-
-IMPORTANT:
-20 calls/day is a growth target, not a guaranteed outcome. Local competition, search demand, ranking and conversion rate must be tracked continuously.`;
-
-
 showOutput(
-"🚀 AI 20 Calls/Day Growth Strategy",
-plan
+"🚀 AI 20 Calls/Day Strategy",
+
+`LOCALBOOST AI - 20 CALLS/DAY PLAN
+
+PHASE 1: PROFILE
+✓ Optimize services
+✓ Improve description
+✓ Add real photos
+✓ Improve categories
+
+PHASE 2: LOCAL SEO
+✓ Target Laptop Repair Garia
+✓ Target Laptop Service Centre Garia
+✓ Target Computer Repair Garia
+
+PHASE 3: CONTENT
+✓ Regular Google Posts
+✓ Service-focused content
+✓ Local keywords
+
+PHASE 4: REVIEWS
+✓ Request genuine customer reviews
+✓ Respond professionally
+
+PHASE 5: TRACKING
+✓ Enter calls daily
+✓ Measure 7-day average
+✓ Identify growth activities
+
+Target: Consistent progress toward 20 qualified calls/day.`
 );
 
 }
 
 
-/* ===================================
-LOAD SAVED CLIENT
-=================================== */
+/* ===============================
+START
+=============================== */
 
-window.onload = function(){
-
-const saved =
-localStorage.getItem("localboostClient");
-
-if(saved){
-
-client =
-JSON.parse(saved);
-
-}
-
-};
+updateDashboard();
 
 </script>
 
